@@ -22,6 +22,7 @@ class CameraScreen(Screen):
         time_stamp = time.strftime("%Y%m%d-%H%M%S")
         filepath = f'files/{time_stamp}.png'
         self.ids.camera.export_to_png(filepath)
+        self.manager.current = 'image_screen'
 
 
 class ImageScreen(Screen):

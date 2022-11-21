@@ -12,7 +12,6 @@ class CameraScreen(Screen):
         self.ids.start.text = 'Stop Camera'
         self.ids.camera.texture = self.ids.camera.texture
 
-
     def stop(self):
         self.ids.camera.play = False
         self.ids.start.text = 'Start Camera'

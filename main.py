@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from fileshare import FileSharer
+from kivy.core.clipboard import Clipboard
 import time
 
 Builder.load_file('frontend.kv')
@@ -33,9 +34,13 @@ class CameraScreen(Screen):
 class ImageScreen(Screen):
     def create_link(self):
         file_path = App.get_running_app().root.ids.camera_screen.filepath
-        fileshare = FileSharer(file_path)
-        link = fileshare.share()
-        self.ids.link.text = link
+        filesharer = FileSharer(file_path)
+        self.link = filesharer.share()
+        self.ids.link.text = self.link
+
+    def copy_link(self):
+        Clipboard.copy(self.link)
+
 
 
 

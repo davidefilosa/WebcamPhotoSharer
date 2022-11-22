@@ -15,12 +15,14 @@ class CameraScreen(Screen):
         self.ids.camera.play = True
         self.ids.start.text = 'Stop Camera'
         self.ids.camera.texture = self.ids.camera.texture
+        self.ids.camera.opacity = 1
 
     def stop(self):
         """Stops camera and change Button text"""
         self.ids.camera.play = False
         self.ids.start.text = 'Start Camera'
         self.ids.camera.texture = None
+        self.ids.camera.opacity = 0
 
     def capture(self):
         """Create a file name with the current time

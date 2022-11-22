@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from fileshare import FileSharer
 from kivy.core.clipboard import Clipboard
 import time
+import webbrowser
 
 Builder.load_file('frontend.kv')
 
@@ -39,7 +40,18 @@ class ImageScreen(Screen):
         self.ids.link.text = self.link
 
     def copy_link(self):
-        Clipboard.copy(self.link)
+        try:
+            Clipboard.copy(self.link)
+        except AttributeError:
+            self.ids.link.text = 'Please create a link first'
+
+    def open_link(self):
+        try:
+            webbrowser.open(self.link)
+        except AttributeError:
+            self.ids.link.text = 'Please create a link first'
+
+
 
 
 

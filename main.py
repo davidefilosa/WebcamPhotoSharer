@@ -33,23 +33,28 @@ class CameraScreen(Screen):
 
 
 class ImageScreen(Screen):
+
+    link_message = 'Please create a link first'
     def create_link(self):
+        """Creates a sharable link"""
         file_path = App.get_running_app().root.ids.camera_screen.filepath
         filesharer = FileSharer(file_path)
         self.link = filesharer.share()
         self.ids.link.text = self.link
 
     def copy_link(self):
+        """Copies link in the clipboard"""
         try:
             Clipboard.copy(self.link)
         except AttributeError:
-            self.ids.link.text = 'Please create a link first'
+            self.ids.link.text = self.link_message
 
     def open_link(self):
+        """Opens link in the browser"""
         try:
             webbrowser.open(self.link)
         except AttributeError:
-            self.ids.link.text = 'Please create a link first'
+            self.ids.link.text = self.link_message
 
 
 

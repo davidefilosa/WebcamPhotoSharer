@@ -24,14 +24,19 @@ class CameraScreen(Screen):
         """Create a file name with the current time
         stamp and save an image under that filename"""
         time_stamp = time.strftime("%Y%m%d-%H%M%S")
-        filepath = f'files/{time_stamp}.png'
-        self.ids.camera.export_to_png(filepath)
+        self.filepath = f'files/{time_stamp}.png'
+        self.ids.camera.export_to_png(self.filepath)
         self.manager.current = 'image_screen'
-        self.manager.current_screen.ids.img.source = filepath
+        self.manager.current_screen.ids.img.source = self.filepath
 
 
 class ImageScreen(Screen):
-    pass
+    def create_link(self):
+        file_path = App.get_running_app().root.ids.camera_screen.filepath
+        fileshare = FileSharer(file_path)
+        link = fileshare.share()
+        self.ids.link.text = link
+
 
 
 class RootWidget(ScreenManager):

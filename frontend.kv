@@ -31,7 +31,9 @@
         Button:
             text: 'Create Sharable Link'
             size_hint_y: 0.2
+            on_press : root.create_link()
         Label:
+            id: link
             text: ''
         GridLayout:
             cols: 2
